@@ -31,6 +31,7 @@ class MonoDeckScreen extends Component {
           <Button
             full
             rounded
+            bordered
             primary
             style={{ marginTop: 10 }}
             onPress={() => this.props.navigation.navigate('Chat')}
