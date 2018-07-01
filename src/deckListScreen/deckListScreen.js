@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StatusBar } from 'react-native';
 import {
   Container,
   Header,
+  Left,
   Title,
   Right,
   Button,
@@ -18,41 +18,43 @@ class DeckListScreen extends Component {
     return (
       <Container>
         <Header>
+          <Left />
           <Body>
-            <Title>HomeScreen</Title>
+            <Title>DECKS</Title>
           </Body>
           <Right />
         </Header>
-        <Content padder="padder">
-          <Card>
+        <Content padder>
+          <Card style={{ alignItems: 'center' }}>
+            <CardItem header>
+              <Text>Udacicards</Text>
+            </CardItem>
             <CardItem>
-              <Body>
-                <Text>Chat App to talk some awesome people!</Text>
+              <Body style={{ alignItems: 'center' }}>
+                <Text>3 cards</Text>
               </Body>
             </CardItem>
           </Card>
-          <Button
-            full="full"
-            rounded="rounded"
-            dark="dark"
-            style={{
-              marginTop: 10,
-            }}
-            onPress={() => this.props.navigation.navigate('Chat')}
-          >
-            <Text>Chat With People</Text>
-          </Button>
-          <Button
-            full="full"
-            rounded="rounded"
-            primary="primary"
-            style={{
-              marginTop: 10,
-            }}
-            onPress={() => this.props.navigation.navigate('Profile')}
-          >
-            <Text>Goto Profiles</Text>
-          </Button>
+          <Card style={{ alignItems: 'center' }}>
+            <CardItem header>
+              <Text>New Deck</Text>
+            </CardItem>
+            <CardItem>
+              <Body style={{ alignItems: 'center' }}>
+                <Text>0 cards</Text>
+              </Body>
+            </CardItem>
+          </Card>
+          <Card style={{ alignItems: 'center' }}>
+            <CardItem header>
+              <Text>New Deck 2</Text>
+            </CardItem>
+            <CardItem>
+              <Body style={{ alignItems: 'center' }}>
+                <Text>0 cards</Text>
+              </Body>
+            </CardItem>
+          </Card>
         </Content>
       </Container>);
   }
