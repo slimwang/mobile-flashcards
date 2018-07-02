@@ -39,7 +39,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    let cards = 'a';
+    let cards;
     getDecks().then((res) => {
       cards = res || {
         cards: {
