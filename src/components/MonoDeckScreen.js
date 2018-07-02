@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import {
   Container,
-  Header,
-  Left,
-  Title,
-  Right,
   Body,
   Button,
   Content,
@@ -15,16 +11,17 @@ import {
 
 class MonoDeckScreen extends Component {
   render() {
+    const { card } = this.props.navigation.state.params;
     return (
       <Container>
         <Content padder>
           <Card style={{ alignItems: 'center' }}>
             <CardItem header>
-              <Text>Udacicards</Text>
+              <Text>{ card.title }</Text>
             </CardItem>
             <CardItem>
               <Body style={{ alignItems: 'center' }}>
-                <Text>3 cards</Text>
+                <Text>{ card.questions.length } cards</Text>
               </Body>
             </CardItem>
           </Card>

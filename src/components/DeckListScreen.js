@@ -17,7 +17,7 @@ class DeckListScreen extends Component {
       <Container>
         <Content padder>
           {cards.map(card => (
-            <TouchableOpacity key={card.title} onPress={() => navigation.navigate('MonoDeck')}>
+            <TouchableOpacity key={card.title} onPress={() => navigation.navigate('MonoDeck', { card })}>
               <Card style={{ alignItems: 'center' }}>
                 <CardItem header>
                   <Text>{ card.title }</Text>
