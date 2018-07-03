@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import reducer from './src/reducers';
 import DeckListScreen from './src/components/DeckListScreen';
 import MonoDeckScreen from './src/components/MonoDeckScreen';
-import { getDecks } from './utils/api';
+import QuizeScreen from './src/components/QuizScreen';
 
 
 const Stack = createStackNavigator({
@@ -18,8 +18,11 @@ const Stack = createStackNavigator({
   },
   MonoDeck: {
     screen: MonoDeckScreen,
+  },
+  Quiz: {
+    screen: QuizeScreen,
     navigationOptions: {
-      title: 'Udacicards',
+      title: 'Quiz',
     },
   },
 });

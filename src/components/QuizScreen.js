@@ -9,8 +9,7 @@ import {
   CardItem,
 } from 'native-base';
 
-class MonoDeckScreen extends Component {
-  static navigationOptions = ({ navigation }) => ({ title: navigation.state.params.card.title });
+class QuizScreen extends Component {
 
   render() {
     const { card } = this.props.navigation.state.params;
@@ -19,32 +18,33 @@ class MonoDeckScreen extends Component {
         <Content padder>
           <Card style={{ alignItems: 'center' }}>
             <CardItem header>
-              <Text>{ card.title }</Text>
+              <Text>{ card.questions[0].question }</Text>
             </CardItem>
             <CardItem>
               <Body style={{ alignItems: 'center' }}>
-                <Text>{ card.questions.length } cards</Text>
+                <Button danger transparent small style={{ alignItems: 'center' }}><Text> Answer </Text></Button>
+                <Text>{ card.questions[0].answer } cards</Text>
               </Body>
             </CardItem>
           </Card>
           <Button
             full
             rounded
-            bordered
             primary
+            success
             style={{ marginTop: 10 }}
             onPress={() => this.props.navigation.navigate('Chat')}
           >
-            <Text>Add Card</Text>
+            <Text>Correct</Text>
           </Button>
           <Button
             full
             rounded
-            dark
+            danger
             style={{ marginTop: 10 }}
-            onPress={() => this.props.navigation.navigate('Quiz', { card })}
+            onPress={() => this.props.navigation.navigate('Profile')}
           >
-            <Text>Start Quiz</Text>
+            <Text>Incorrect</Text>
           </Button>
         </Content>
       </Container>
@@ -52,4 +52,4 @@ class MonoDeckScreen extends Component {
   }
 }
 
-export default MonoDeckScreen;
+export default QuizScreen;
