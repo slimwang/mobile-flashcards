@@ -10,6 +10,17 @@ import {
 } from 'native-base';
 
 class QuizScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      viewAnswer: false,
+    };
+    this.toggleViewAnswer.bind(this);
+  }
+
+  toggleViewAnswer() {
+    this.setState(prevState => ({ viewAnswer: !prevState.viewAnswer }));
+  }
 
   render() {
     const { card } = this.props.navigation.state.params;
@@ -22,8 +33,16 @@ class QuizScreen extends Component {
             </CardItem>
             <CardItem>
               <Body style={{ alignItems: 'center' }}>
-                <Button danger transparent small style={{ alignItems: 'center' }}><Text> Answer </Text></Button>
-                <Text>{ card.questions[0].answer } cards</Text>
+                <Button
+                  full
+                  danger
+                  transparent
+                  small
+                  onPress={() => this.toggleViewAnswer()}
+                >
+                  <Text> Answer </Text>
+                </Button>
+                { this.state.viewAnswer && (<Text>{ card.questions[0].answer }</Text>)}
               </Body>
             </CardItem>
           </Card>
