@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Container,
   Body,
@@ -13,7 +14,7 @@ class MonoDeckScreen extends Component {
   static navigationOptions = ({ navigation }) => ({ title: navigation.state.params.card.title });
 
   render() {
-    const { card } = this.props.navigation.state.params;
+    const { card } = this.props;
     return (
       <Container>
         <Content padder>
@@ -52,4 +53,8 @@ class MonoDeckScreen extends Component {
   }
 }
 
-export default MonoDeckScreen;
+function mapStateToProps(state, ownProps) {
+  return { card: state[ownProps.navigation.state.params.card.title] };
+}
+
+export default connect(mapStateToProps)(MonoDeckScreen);

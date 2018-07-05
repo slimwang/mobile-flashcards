@@ -19,8 +19,8 @@ class NewQuestionScreen extends Component {
       question: this.state.question,
       answer: this.state.answer
     };
-    console.log(this.props.dispatch);
     this.props.dispatch(addNewQuestion({ question, cardTitle: card.title }));
+    this.props.navigation.navigate('MonoDeck', { card })
   }
 
   render() {
