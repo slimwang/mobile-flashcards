@@ -1,4 +1,7 @@
-import { GET_ALL_DECKS } from '../actions';
+import {
+  GET_ALL_DECKS,
+  ADD_NEW_QUESTION,
+} from '../actions';
 
 const initCards = {
   React: {
@@ -29,6 +32,14 @@ function cards(state = initCards, action) {
   switch (action.type) {
     case GET_ALL_DECKS:
       return state;
+    case ADD_NEW_QUESTION:
+      return {
+        ...state,
+        [action.cardTitle]: {
+          ...state[action.cardTitle],
+          questions: [...state[action.cardTitle].questions, action.question],
+        }
+      };
     default:
       return state;
   }

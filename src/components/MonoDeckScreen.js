@@ -33,7 +33,7 @@ class MonoDeckScreen extends Component {
             bordered
             primary
             style={{ marginTop: 10 }}
-            onPress={() => this.props.navigation.navigate('Chat')}
+            onPress={() => this.props.navigation.navigate('AddCard', { card })}
           >
             <Text>Add Card</Text>
           </Button>
