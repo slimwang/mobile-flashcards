@@ -9,6 +9,10 @@ import MonoDeckScreen from './src/components/MonoDeckScreen';
 import QuizeScreen from './src/components/QuizScreen';
 import NewQuestionScreen from './src/components/NewQuestionScreen';
 import NewDeckScreen from './src/components/NewDeckScreen';
+import {
+  setLocalNotification,
+  clearLocalNotification,
+} from './src/utils/helpers';
 
 
 const Stack = createStackNavigator({
@@ -59,6 +63,8 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    clearLocalNotification()
+    .then(setLocalNotification);
   }
 
   render() {
