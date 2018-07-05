@@ -16,12 +16,25 @@ class QuizScreen extends Component {
     this.state = {
       viewAnswer: false,
       questionIndex: 0,
+      corrects: 0,
     };
     this.toggleViewAnswer.bind(this);
   }
 
   toggleViewAnswer() {
     this.setState(prevState => ({ viewAnswer: !prevState.viewAnswer }));
+  }
+
+  handleJudge(judge) {
+    const { questionIndex } = this.state;
+    const { questions } = this.props;
+    const newIndex = questionIndex + 1;
+    if (newIndex < questions.length) {
+      this.setState({ questionIndex: newIndex});
+      if (judge === 'correct') {
+        this.setState((prevState) => ({ corrects: prevState.corrects + 1}));
+      }
+    }
   }
 
   render() {
@@ -31,6 +44,7 @@ class QuizScreen extends Component {
     return (
       <Container>
         <Content padder>
+          <Text>{this.state.corrects}</Text>
           <Card style={{ alignItems: 'center' }}>
             <Text>{`${this.state.questionIndex + 1}/${card.questions.length}`}</Text>
             <CardItem header>
@@ -45,7 +59,7 @@ class QuizScreen extends Component {
                   small
                   onPress={() => this.toggleViewAnswer()}
                 >
-                  <Text> Answer </Text>
+                  <Text>ANSWER</Text>
                 </Button>
                 { this.state.viewAnswer && (<Text>{ questions[questionIndex].answer }</Text>)}
               </Body>
@@ -57,7 +71,7 @@ class QuizScreen extends Component {
             primary
             success
             style={{ marginTop: 10 }}
-            onPress={() => this.props.navigation.navigate('Chat')}
+            onPress={() => this.handleJudge('correct')}
           >
             <Text>Correct</Text>
           </Button>
@@ -66,7 +80,7 @@ class QuizScreen extends Component {
             rounded
             danger
             style={{ marginTop: 10 }}
-            onPress={() => this.props.navigation.navigate('Profile')}
+            onPress={() => this.handleJudge('incorrect')}
           >
             <Text>Incorrect</Text>
           </Button>
