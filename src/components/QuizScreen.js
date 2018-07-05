@@ -15,6 +15,7 @@ class QuizScreen extends Component {
     super(props);
     this.state = {
       viewAnswer: false,
+      viewScore: false,
       questionIndex: 0,
       corrects: 0,
     };
@@ -28,12 +29,16 @@ class QuizScreen extends Component {
   handleJudge(judge) {
     const { questionIndex } = this.state;
     const { questions } = this.props;
+    const lastIndex = questions.length - 1;
     const newIndex = questionIndex + 1;
-    if (newIndex < questions.length) {
+    if (questionIndex === lastIndex) {
+      this.setState((prevState) => ({ viewScore: true }));
+    }
+    if (newIndex <= lastIndex) {
       this.setState({ questionIndex: newIndex});
-      if (judge === 'correct') {
-        this.setState((prevState) => ({ corrects: prevState.corrects + 1}));
-      }
+    }
+    if (judge === 'correct' && this.state.corrects < questions.length) {
+      this.setState((prevState) => ({ corrects: prevState.corrects + 1}));
     }
   }
 
@@ -41,10 +46,16 @@ class QuizScreen extends Component {
     const { card } = this.props.navigation.state.params;
     const { questions } = this.props;
     const { questionIndex } = this.state;
+    const score = (
+      <Card style={{ alignItems: 'center' }}>
+        <CardItem header>
+          <Text>{`Congratulations! ${this.state.corrects} of ${questions.length} correct.`}</Text>
+        </CardItem>
+      </Card>
+    );
     return (
       <Container>
         <Content padder>
-          <Text>{this.state.corrects}</Text>
           <Card style={{ alignItems: 'center' }}>
             <Text>{`${this.state.questionIndex + 1}/${card.questions.length}`}</Text>
             <CardItem header>
@@ -84,6 +95,7 @@ class QuizScreen extends Component {
           >
             <Text>Incorrect</Text>
           </Button>
+          { this.state.viewScore && score}
         </Content>
       </Container>
     );
