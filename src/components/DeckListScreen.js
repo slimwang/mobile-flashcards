@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { Entypo } from '@expo/vector-icons'
 import {
   Container,
   Body,
@@ -30,6 +31,13 @@ class DeckListScreen extends Component {
               </Card>
             </TouchableOpacity>
           ))}
+          <TouchableOpacity onPress={() => navigation.navigate('AddDeck')}>
+            <Card style={{ alignItems: 'center' }}>
+              <CardItem header>
+                <Text><Entypo name="add-to-list" size={20}/> Add A New Deck</Text>
+              </CardItem>
+            </Card>
+          </TouchableOpacity>
         </Content>
       </Container>);
   }

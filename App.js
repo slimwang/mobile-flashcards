@@ -8,6 +8,7 @@ import DeckListScreen from './src/components/DeckListScreen';
 import MonoDeckScreen from './src/components/MonoDeckScreen';
 import QuizeScreen from './src/components/QuizScreen';
 import NewQuestionScreen from './src/components/NewQuestionScreen';
+import NewDeckScreen from './src/components/NewDeckScreen';
 
 
 const Stack = createStackNavigator({
@@ -30,6 +31,12 @@ const Stack = createStackNavigator({
     screen: NewQuestionScreen,
     navigationOptions: {
       title: 'Add Card',
+    },
+  },
+  AddDeck: {
+    screen: NewDeckScreen,
+    navigationOptions: {
+      title: 'Add Deck',
     },
   },
 });

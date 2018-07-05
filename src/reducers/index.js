@@ -1,6 +1,7 @@
 import {
   GET_ALL_DECKS,
   ADD_NEW_QUESTION,
+  ADD_NEW_DECK,
 } from '../actions';
 
 const initCards = {
@@ -38,6 +39,14 @@ function cards(state = initCards, action) {
         [action.cardTitle]: {
           ...state[action.cardTitle],
           questions: [...state[action.cardTitle].questions, action.question],
+        }
+      };
+    case ADD_NEW_DECK:
+      return {
+        ...state,
+        [action.title]: {
+          title: action.title,
+          questions: [],
         }
       };
     default:
