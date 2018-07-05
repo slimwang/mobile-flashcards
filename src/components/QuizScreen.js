@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Container,
   Body,
@@ -14,6 +15,7 @@ class QuizScreen extends Component {
     super(props);
     this.state = {
       viewAnswer: false,
+      questionIndex: 0,
     };
     this.toggleViewAnswer.bind(this);
   }
@@ -24,12 +26,15 @@ class QuizScreen extends Component {
 
   render() {
     const { card } = this.props.navigation.state.params;
+    const { questions } = this.props;
+    const { questionIndex } = this.state;
     return (
       <Container>
         <Content padder>
           <Card style={{ alignItems: 'center' }}>
+            <Text>{`${this.state.questionIndex + 1}/${card.questions.length}`}</Text>
             <CardItem header>
-              <Text>{ card.questions[0].question }</Text>
+              <Text>{ questions[questionIndex].question }</Text>
             </CardItem>
             <CardItem>
               <Body style={{ alignItems: 'center' }}>
@@ -42,7 +47,7 @@ class QuizScreen extends Component {
                 >
                   <Text> Answer </Text>
                 </Button>
-                { this.state.viewAnswer && (<Text>{ card.questions[0].answer }</Text>)}
+                { this.state.viewAnswer && (<Text>{ questions[questionIndex].answer }</Text>)}
               </Body>
             </CardItem>
           </Card>
@@ -71,4 +76,9 @@ class QuizScreen extends Component {
   }
 }
 
-export default QuizScreen;
+function mapStateToProps(state, ownProps) {
+  const { card } = ownProps.navigation.state.params;
+  return { questions: state[card.title].questions };
+}
+
+export default connect(mapStateToProps)(QuizScreen);
