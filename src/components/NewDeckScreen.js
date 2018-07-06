@@ -15,7 +15,7 @@ class NewDeckScreen extends Component {
   handleSubmit() {
     const { title } = this.state;
     this.props.dispatch(addNewDeck({ title }));
-    this.props.navigation.navigate('DeckList')
+    this.props.navigation.navigate('MonoDeck', { card: { title }});
   }
 
   render() {
