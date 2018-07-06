@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import {
   Container,
@@ -10,7 +10,7 @@ import {
   CardItem,
 } from 'native-base';
 
-class QuizScreen extends Component {
+class QuizScreen extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

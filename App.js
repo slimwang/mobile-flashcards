@@ -1,49 +1,13 @@
 import React, { Component } from 'react';
 import Expo from 'expo';
-import { createStackNavigator } from 'react-navigation';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './src/reducers';
-import DeckListScreen from './src/components/DeckListScreen';
-import MonoDeckScreen from './src/components/MonoDeckScreen';
-import QuizeScreen from './src/components/QuizScreen';
-import NewQuestionScreen from './src/components/NewQuestionScreen';
-import NewDeckScreen from './src/components/NewDeckScreen';
+import { Stack } from './routes.js';
 import {
   setLocalNotification,
   clearLocalNotification,
 } from './src/utils/helpers';
-
-
-const Stack = createStackNavigator({
-  DeckList: {
-    screen: DeckListScreen,
-    navigationOptions: {
-      title: 'Decks',
-    },
-  },
-  MonoDeck: {
-    screen: MonoDeckScreen,
-  },
-  Quiz: {
-    screen: QuizeScreen,
-    navigationOptions: {
-      title: 'Quiz',
-    },
-  },
-  AddCard: {
-    screen: NewQuestionScreen,
-    navigationOptions: {
-      title: 'Add Card',
-    },
-  },
-  AddDeck: {
-    screen: NewDeckScreen,
-    navigationOptions: {
-      title: 'Add Deck',
-    },
-  },
-});
 
 export default class App extends Component {
   constructor() {
