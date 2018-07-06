@@ -20,6 +20,8 @@ class QuizScreen extends Component {
       corrects: 0,
     };
     this.toggleViewAnswer.bind(this);
+    this.handleJudge.bind(this);
+    this.clearAll.bind(this);
   }
 
   toggleViewAnswer() {
@@ -42,6 +44,15 @@ class QuizScreen extends Component {
     }
   }
 
+  clearAll() {
+    this.setState({
+      viewAnswer: false,
+      viewScore: false,
+      questionIndex: 0,
+      corrects: 0,
+    });
+  }
+
   render() {
     const { card } = this.props.navigation.state.params;
     const { questions } = this.props;
@@ -51,6 +62,24 @@ class QuizScreen extends Component {
         <CardItem header>
           <Text>{`Congratulations! ${this.state.corrects} of ${questions.length} correct.`}</Text>
         </CardItem>
+        <Button
+          full
+          primary
+          transparent
+          style={{ marginTop: 10 }}
+          onPress={() => this.clearAll()}
+        >
+          <Text>Restart Quiz</Text>
+        </Button>
+        <Button
+          full
+          warning
+          transparent
+          style={{ marginTop: 10, marginBottom: 10 }}
+          onPress={() => this.props.navigation.navigate('MonoDeck', { card })}
+        >
+          <Text>Back to Deck</Text>
+        </Button>
       </Card>
     );
     return (
@@ -79,7 +108,6 @@ class QuizScreen extends Component {
           <Button
             full
             rounded
-            primary
             success
             style={{ marginTop: 10 }}
             onPress={() => this.handleJudge('correct')}
